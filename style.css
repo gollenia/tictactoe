@@ -1,19 +1,31 @@
 /* TABLE OF CONTENT 
-1. custom properties
+I.  CUSTOM PROPERTIES / VARIABLS
+II. LAYOUT
+    1. General
+    2. Table
+        2.1 Raster
+        2.2 Images
+        2.2.1 General
+    3. Buttons
 
 
 */
 
-/* CUSTOM PROPERTIES / VARIABLES */
+/* =============================
+I. CUSTOM PROPERTIES / VARIABLES 
+================================*/
 :root {
-    --w-row: 50%;
-    --w-data: calc(var(--w-row) / 3);
+    --w-row: 400px;
     --h-row: calc(var(--w-row) / 3);
+    --w-data: calc(var(--w-row) / 3);
+    --h-data: calc(var(--w-row) / 3);
 }
 
 /* =======
-LAYOUT
+II. LAYOUT
 =========*/
+
+/* General */
 
 * {
     margin: 0;
@@ -23,22 +35,24 @@ LAYOUT
     scroll-behavior: smooth;
 }
 
-.center-text {
-    text-align: center;
-    vertical-align: middle;
-}
-
 main {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 50px);
 }
 
-/* Table */
+
+*:focus { /* muss ich noch anpassen */
+    border: 1px solid black;
+}
+
+/* 2.  Table */
+/* 2.1 Raster*/
 table {
-    width: var(--w-row);
-    height: var(--w-row);
+    max-width: var(--w-row);
+    max-height: var(--w-row);
     border-collapse: collapse;
     border-style: hidden;
 }
@@ -49,8 +63,61 @@ tr {
 }
 
 td {
+    position: relative;
     width: var(--w-data);
-    height: var(--h-row);
+    height: var(--h-data);
     border: 5px solid black;
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
 }
 
+td:hover {
+    background-color:rgba(0, 214, 46, 0.2);
+    transition: all 225ms ease-in-out;
+}
+
+/* 2.2 Images */
+
+/* 2.2.1 General */
+
+.d-none {
+    display: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.images-stacked {
+    position: absolute;
+}
+.x-o-shapes {
+    height: 120px;
+    width: auto;
+}
+
+
+/* Christmas-Edition */
+
+/* Buttons */
+/* General */
+
+.btn {
+    border: none !important;
+    transition: all 10ms ease-in-out;
+}
+
+.btn:active {
+    transform: scale(0.98);
+    transition: all 10ms ease-in-out;
+}
+
+
+/* Specific Buttons */
+.replay {
+    position: absolute;
+    bottom: 5%;
+    right: 25%;
+}
