@@ -1,5 +1,56 @@
 /* TABLE OF CONTENT 
-
+1. custom properties
 
 
 */
+
+/* CUSTOM PROPERTIES / VARIABLES */
+:root {
+    --w-row: 50%;
+    --w-data: calc(var(--w-row) / 3);
+    --h-row: calc(var(--w-row) / 3);
+}
+
+/* =======
+LAYOUT
+=========*/
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+    scroll-behavior: smooth;
+}
+
+.center-text {
+    text-align: center;
+    vertical-align: middle;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Table */
+table {
+    width: var(--w-row);
+    height: var(--w-row);
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+tr {
+    width: var(--w-row);
+    height: var(--h-row);
+}
+
+td {
+    width: var(--w-data);
+    height: var(--h-row);
+    border: 5px solid black;
+}
+
