@@ -47,17 +47,37 @@ player1 play with x,
 player2 play with o,
 makes them take turns
 after one click.
+
+The field is only clickalbe when it is empty!
+
 */
 function takingTurns(i) {
-    if (player1()) {
-        showX(i);
-        currentPlayer++;
-    } else if (player2()) {
-        showO(i);
-        currentPlayer--;
+    if (fieldIdEmpty(i)) {
+        if (player1()) {
+            showX(i);
+            currentPlayer++;
+            showPlayers2Turn();
+
+        } else if (player2()) {
+            showO(i);
+            currentPlayer--;
+            showPlayers1Turn();
+        }
+        selectionToFields(i);
+        checkForWinner();
     }
-    selectionToFields(i);
-    console.log(fields);
+}
+
+function fieldIdEmpty(i) {
+    return fields[i] == undefined;
+}
+
+function player1() {
+    return currentPlayer == 0;
+}
+
+function player2() {
+    return currentPlayer == 1;
 }
 
 /* 
@@ -74,36 +94,88 @@ function showO(i) {
     document.getElementById(`image-o-${i}`).classList.remove('d-none');
 }
 
+
+function showPlayers1Turn() {
+    document.getElementById('player2').classList.remove('turn');
+    document.getElementById('player1').classList.add('turn');
+}
+
+function showPlayers2Turn() {
+    document.getElementById('player1').classList.remove('turn');
+    document.getElementById('player2').classList.add('turn');
+}
+
+
 /* 
 Chosen image is pushed to array fields 
 */
 function selectionToFields(i) {
     if (player1()) {
-        fields[i] = `image-x-${i}`
+        fields[i] = 'present';
     } else if (player2()) {
-        fields[i] = `image-o-${i}`;
+        fields[i] = 'tree';
     }
 }
 
-function player1(){
-   return currentPlayer == 0;
+function checkForWinner() {
+
+    let winner;
+
+    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
+        winner = fields[0];
+    }
+
+    if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
+        winner = fields[3];
+    }
+
+    if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6]) {
+        winner = fields[6];
+    }
+
+    if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
+        winner = fields[0];
+    }
+
+    if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
+        winner = fields[1];
+    }
+
+    if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
+        winner = fields[2];
+    }
+
+    if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
+        winner = fields[0];
+    }
+
+    if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
+        winner = fields[2];
+    }
+
+    if (winner) {
+        document.getElementById('table').classList.add('unclickable');
+        console.log('You win:', winner);
+    }
 }
 
-function player2(){
-    return currentPlayer == 1;
-}
 
-
+/* 
+functions sets currentPlayer to default mode (change?),
+clears fields-Array,
+hides all the images in the fields.
+*/
 function replay() {
     currentPlayer = 0;
     fields = [];
-    hideAllImages();
+    document.getElementById('table').classList.remove('unclickable');
+    hideAllImages(); 
 }
 
 function hideAllImages() {
     for (let i = 0; i < 9; i++) {
-    document.getElementById(`image-x-${i}`).classList.add('d-none');
-    document.getElementById(`image-o-${i}`).classList.add('d-none');      
-}
+        document.getElementById(`image-x-${i}`).classList.add('d-none');
+        document.getElementById(`image-o-${i}`).classList.add('d-none');
+    }
 }
 

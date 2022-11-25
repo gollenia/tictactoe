@@ -2,11 +2,18 @@
 I.  CUSTOM PROPERTIES / VARIABLS
 II. LAYOUT
     1. General
-    2. Table
-        2.1 Raster
-        2.2 Images
-        2.2.1 General
-    3. Buttons
+    2. Main
+        2.1 General
+        2.2 Players Section
+        2.3 Table
+            2.3.1 Raster
+            2.3.2 Images
+           
+III EDITIONS
+    1. Winter Edition
+        1.1 Buttons
+        1.1.1 General
+        1.1.2 Specific
 
 
 */
@@ -19,13 +26,14 @@ I. CUSTOM PROPERTIES / VARIABLES
     --h-row: calc(var(--w-row) / 3);
     --w-data: calc(var(--w-row) / 3);
     --h-data: calc(var(--w-row) / 3);
+    --bc-no-turn: rgba(232, 103, 22, 0.668);
 }
 
 /* =======
 II. LAYOUT
 =========*/
 
-/* General */
+/* 1. General */
 
 * {
     margin: 0;
@@ -35,21 +43,67 @@ II. LAYOUT
     scroll-behavior: smooth;
 }
 
-main {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 50px);
-}
-
 
 *:focus { /* muss ich noch anpassen */
     border: 1px solid black;
 }
 
-/* 2.  Table */
-/* 2.1 Raster*/
+.unclickable {
+    pointer-events: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Main */
+
+/* 2.1 General */
+main {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 50px);
+}
+
+/* 2.2 Players Section */
+.players-container {
+    width: var(--w-row);
+}
+
+.status {
+    height: 150px ;
+    border-radius: 50%;
+}
+
+.players {
+    flex-basis: 100%;
+    flex-direction: column;
+    height: 200px;
+    margin-bottom: 16px;
+    background-color: var(--bc-no-turn);
+}
+
+.player1 {
+    margin-right: 8px;
+}
+
+h2 {
+    color: white;
+    
+}
+
+.turn {
+    border: 5px solid rgb(230,34,51);
+}
+
+
+/* 2.3  Table */
+/* 2.3.1 Raster*/
 table {
     max-width: var(--w-row);
     max-height: var(--w-row);
@@ -76,9 +130,7 @@ td:hover {
     transition: all 225ms ease-in-out;
 }
 
-/* 2.2 Images */
-
-/* 2.2.1 General */
+/* 2.3.2 Images */
 
 .d-none {
     display: none;
@@ -90,19 +142,27 @@ td:hover {
     align-items: center;
 }
 
+.f-column {
+    flex-direction: column;
+}
+
 .images-stacked {
     position: absolute;
 }
 .x-o-shapes {
-    height: 120px;
+    height: 100px;
     width: auto;
 }
 
 
-/* Christmas-Edition */
+/* ===========
+III EDITIONS
+==============*/
 
-/* Buttons */
-/* General */
+/* 1. Winter-Edition */
+
+/* 1.1 Buttons */
+/* 1.1.1 General */
 
 .btn {
     border: none !important;
@@ -115,7 +175,7 @@ td:hover {
 }
 
 
-/* Specific Buttons */
+/* 1.1.2 Specific Buttons */
 .replay {
     position: absolute;
     bottom: 5%;
