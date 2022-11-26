@@ -8,6 +8,8 @@ II. LAYOUT
         2.3 Table
             2.3.1 Raster
             2.3.2 Images
+        2.4 Overlays
+            2.4.1 Draw Popup/Screen/Window
            
 III EDITIONS
     1. Winter Edition
@@ -26,7 +28,9 @@ I. CUSTOM PROPERTIES / VARIABLES
     --h-row: calc(var(--w-row) / 3);
     --w-data: calc(var(--w-row) / 3);
     --h-data: calc(var(--w-row) / 3);
-    --bc-no-turn: rgba(232, 103, 22, 0.668);
+    --opac-no-turn: 0.6;
+    --opac-turn: 1;
+
 }
 
 /* =======
@@ -43,8 +47,13 @@ II. LAYOUT
     scroll-behavior: smooth;
 }
 
+body {
+    height: 100vh;
+}
 
-*:focus { /* muss ich noch anpassen */
+
+*:focus {
+    /* muss ich noch anpassen */
     border: 1px solid black;
 }
 
@@ -53,9 +62,9 @@ II. LAYOUT
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center!important;
 }
 
 /* 2. Main */
@@ -64,11 +73,15 @@ II. LAYOUT
 main {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 100px);
+    padding: 32px 0;
+    background-image: linear-gradient( 0deg, #e5b8b8,#bf5959a7, #c43939b9);
 }
+
+
 
 /* 2.2 Players Section */
 .players-container {
@@ -76,29 +89,44 @@ main {
 }
 
 .status {
-    height: 150px ;
+    height: 150px;
     border-radius: 50%;
 }
 
 .players {
-    flex-basis: 100%;
+    /*  flex-basis: 100%; */
     flex-direction: column;
     height: 200px;
+    width: 200px;
     margin-bottom: 16px;
-    background-color: var(--bc-no-turn);
+    background-color: rgba(232, 103, 22, 0.668);
+    opacity: var(--opac-no-turn);
 }
 
 .player1 {
     margin-right: 8px;
 }
 
+.player-icon {
+    height: 64px;
+    width: auto;
+}
+
 h2 {
     color: white;
-    
+
 }
 
 .turn {
-    border: 5px solid rgb(230,34,51);
+    border: 5px solid rgb(230, 34, 51);
+    opacity: var(--opac-turn);
+}
+
+.victory {
+    flex-basis: unset;
+    width: 200px;
+    opacity: 1;
+    border: 10px solid rgb(255, 215, 0);
 }
 
 
@@ -126,14 +154,14 @@ td {
 }
 
 td:hover {
-    background-color:rgba(0, 214, 46, 0.2);
+    background-color: rgba(0, 214, 46, 0.2);
     transition: all 225ms ease-in-out;
 }
 
 /* 2.3.2 Images */
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .center {
@@ -149,11 +177,25 @@ td:hover {
 .images-stacked {
     position: absolute;
 }
+
 .x-o-shapes {
     height: 100px;
     width: auto;
 }
 
+
+/* 2.4.1 Draw Ovlay */
+
+.draw {
+    position: absolute;
+    bottom: 50%;
+    top: 50%;
+    height: 150px;
+    text-align: center;
+    padding: 16px;
+    background-color: #ca1616;
+    border-radius: 0.375rem;
+}
 
 /* ===========
 III EDITIONS
@@ -177,7 +219,15 @@ III EDITIONS
 
 /* 1.1.2 Specific Buttons */
 .replay {
-    position: absolute;
-    bottom: 5%;
-    right: 25%;
+    /*  position: absolute; */
+    height: 60px !important;
+    width: 120px !important;
+    font-size: 24px !important;
+    margin-top: 32px;
+    transition: all 10ms ease-in-out;
+}
+
+.replay:active {
+    transform: scale(0.98);
+    transition: all 10ms ease-in-out;
 }

@@ -11,12 +11,14 @@ I.  Comment
 
 I COMMENT
 
-x = christmas tree
-o = christmas present
+player 1: x = christmas tree
+player 2: o = christmas present 
 ======= */
 
 let fields = [];
+let numberTurns = [];
 let currentPlayer = 0;
+let winner;
 
 function renderTable() {
     for (let i = 0; i < 3; i++) {
@@ -48,8 +50,9 @@ player2 play with o,
 makes them take turns
 after one click.
 
-The field is only clickalbe when it is empty!
+The field is only clickable when it is empty!
 
+i == index of fields
 */
 function takingTurns(i) {
     if (fieldIdEmpty(i)) {
@@ -63,13 +66,16 @@ function takingTurns(i) {
             currentPlayer--;
             showPlayers1Turn();
         }
+        numberTurns.push(1);
         selectionToFields(i);
         checkForWinner();
     }
 }
-
+/* 
+Checks fields if it is empty
+*/
 function fieldIdEmpty(i) {
-    return fields[i] == undefined;
+    return !fields[i];
 }
 
 function player1() {
@@ -119,8 +125,6 @@ function selectionToFields(i) {
 
 function checkForWinner() {
 
-    let winner;
-
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         winner = fields[0];
     }
@@ -153,10 +157,41 @@ function checkForWinner() {
         winner = fields[2];
     }
 
+    let gameOver = 0;
+    for (let i = 0; i < numberTurns.length; i++) {
+        gameOver += numberTurns[i];
+
+        if (gameOver > 7) {
+            document.getElementById('table').classList.add('unclickable');
+            document.getElementById('draw').classList.remove('d-none');
+            console.log('DRAW');
+
+        }
+
+    }
+
     if (winner) {
         document.getElementById('table').classList.add('unclickable');
         console.log('You win:', winner);
+        hideLoser();
     }
+}
+
+function celebrateWinner() {
+
+}
+
+function hideLoser() {
+    if (treeWins()) {
+        document.getElementById('player1').classList.add('victory');
+        document.getElementById('player2').classList.add('d-none');
+        console.log('tree wins');
+    } else if (presentWins()) {
+        document.getElementById('player1').classList.add('d-none');
+        document.getElementById('player2').classList.add('victory');
+        console.log('present wins');
+    }
+    console.log('macht was');
 }
 
 
@@ -168,8 +203,15 @@ hides all the images in the fields.
 function replay() {
     currentPlayer = 0;
     fields = [];
+    numberTurns = [];
     document.getElementById('table').classList.remove('unclickable');
-    hideAllImages(); 
+    document.getElementById('draw').classList.add('d-none');
+    hideAllImages();
+    loserStartsGame();
+    document.getElementById('player1').classList.remove('d-none');
+    document.getElementById('player2').classList.remove('d-none');
+    document.getElementById('player1').classList.remove('victory');
+    document.getElementById('player2').classList.remove('victory');
 }
 
 function hideAllImages() {
@@ -177,5 +219,25 @@ function hideAllImages() {
         document.getElementById(`image-x-${i}`).classList.add('d-none');
         document.getElementById(`image-o-${i}`).classList.add('d-none');
     }
+}
+
+function loserStartsGame() {
+    if (treeWins()) {
+        currentPlayer = 1;
+        winner = "";
+        showPlayers2Turn();
+    } else if (presentWins()) {
+        currentPlayer = 0;
+        winner = "";
+        showPlayers1Turn();
+    }
+}
+
+function treeWins() {
+    return winner == "tree";
+}
+
+function presentWins() {
+    return winner == "present";
 }
 

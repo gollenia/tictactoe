@@ -32,12 +32,12 @@
     <main>
         <div class="players-container center">
             <div id="player1" class="status players player1 center turn">
-                <img src="icons/icons8-santa-claus-64.png" alt="">
+                <img class="player-icon" src="icons/icons8-santa-claus-64.png" alt="">
                 <h2>Player 1</h2>
             </div>
 
             <div id="player2"class="status players player2 center">
-                <img src="icons/icons8-reindeer-64.png" alt="">
+                <img class="player-icon" src="icons/icons8-reindeer-64.png" alt="">
                 <h2>Player 2</h2>
             </div>
         </div>
@@ -46,8 +46,27 @@
             <tr id="row-middle"></tr>
             <tr id="row-bottom"></tr>
         </table>
-        <button onclick="replay()" type="button" class="btn btn-success replay">Replay</button>
+        <button onclick="replay()" type="button" class="btn btn-success replay center">Replay</button>
+
+        <!-- RENDERN? Overlay Draw Screen -->
+<!-- popup video Junus Lieferando! -->
+        <div id="draw" class="draw d-none">
+            <h1>DRAW</h1>
+            <h2>Please, try again</h2>
+        </div>
+
+        <!-- RENDERN? Overlay Winner Screen -->
+
+
+        <!-- RENDER? Overlay Impressum -->
+
+
     </main>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Tic tac Toe</span>
+        </div>
+    </nav>
 
 </body>
 
