@@ -2,14 +2,16 @@
 I.  CUSTOM PROPERTIES / VARIABLS
 II. LAYOUT
     1. General
-    2. Main
-        2.1 General
-        2.2 Players Section
-        2.3 Table
-            2.3.1 Raster
-            2.3.2 Images
-        2.4 Overlays
-            2.4.1 Draw Popup/Screen/Window
+    2. Navbar 
+    3. Main
+        3.1 General
+        3.2 Players Section
+        3.3 Table
+            3.3.1 Raster
+            3.3.2 Images
+        3.4 Overlays
+            3.4.1 Draw Popup/Screen/Window
+        3.5 Footer
            
 III EDITIONS
     1. Winter Edition
@@ -45,9 +47,11 @@ II. LAYOUT
     text-decoration: none;
     color: black;
     scroll-behavior: smooth;
+    overflow: hidden;
 }
 
 body {
+    font-family: 'Chicle';
     height: 100vh;
 }
 
@@ -67,23 +71,42 @@ body {
     align-items: center!important;
 }
 
-/* 2. Main */
+.flex-end {
+    justify-content: flex-end !important;
+}
 
-/* 2.1 General */
+/* 2. Navbar */
+
+
+.navbar-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: white !important;
+    z-index: 1;
+}
+.game-name {
+    font-size: 32px;
+}
+
+/* 3. Main */
+
+/* 3.1 General */
 main {
     position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 100px);
-    padding: 32px 0;
+    height: 100vh; /* einfach footer auf absolut */
+    padding: 96px 0 82px 0 !important;
     background-image: linear-gradient( 0deg, #e5b8b8,#bf5959a7, #c43939b9);
 }
 
 
 
-/* 2.2 Players Section */
+/* 3.2 Players Section */
 .players-container {
     width: var(--w-row);
 }
@@ -130,8 +153,8 @@ h2 {
 }
 
 
-/* 2.3  Table */
-/* 2.3.1 Raster*/
+/* 3.3  Table */
+/* 3.3.1 Raster*/
 table {
     max-width: var(--w-row);
     max-height: var(--w-row);
@@ -158,7 +181,7 @@ td:hover {
     transition: all 225ms ease-in-out;
 }
 
-/* 2.3.2 Images */
+/* 3.3.2 Images */
 
 .d-none {
     display: none !important;
@@ -184,7 +207,7 @@ td:hover {
 }
 
 
-/* 2.4.1 Draw Ovlay */
+/* 3.4.1 Draw Ovlay */
 
 .draw {
     position: absolute;
@@ -196,6 +219,27 @@ td:hover {
     background-color: #ca1616;
     border-radius: 0.375rem;
 }
+
+
+/* 3.5 Footer */
+
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+
+.container-fluid-footer {
+    justify-content: flex-end !important;
+}
+
+.link {
+    cursor: pointer;
+}
+
+
 
 /* ===========
 III EDITIONS
