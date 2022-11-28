@@ -44,7 +44,7 @@ II. LAYOUT
 * {
     margin: 0;
     box-sizing: border-box;
-    text-decoration: none;
+    text-decoration: none !important;
     color: black;
     scroll-behavior: smooth;
     overflow: hidden;
@@ -57,8 +57,7 @@ body {
 
 
 *:focus {
-    /* muss ich noch anpassen */
-    border: 1px solid black;
+    border-bottom: 3px solid rgb(25,135,84);
 }
 
 .unclickable {
@@ -233,10 +232,23 @@ td:hover {
 
 .container-fluid-footer {
     justify-content: flex-end !important;
+    padding: 0 6px !important;
+}
+
+.links-right {
+display: flex;
+justify-content: space-between;
 }
 
 .link {
+    margin-right: unset !important;
+    padding: 0 6px;
+}
+
+.link a{
+    color: rgb(84, 65, 65) !important;
     cursor: pointer;
+    
 }
 
 

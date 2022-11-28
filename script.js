@@ -11,8 +11,8 @@ I.  Comment
 
 I COMMENT
 
-player 1: x = christmas tree
-player 2: o = christmas present 
+player 1: x = christmas player1
+player 2: o = christmas player2 
 ======= */
 
 let fields = [];
@@ -38,7 +38,7 @@ function tableRowHtml(i) {
         <td onclick="takingTurns(${i})">
             <div id="field${i}" class="center">
                 <img id="image-x-${i}" class="shapes x-o-shapes d-none images-stacked" src="icons/icons8-christmas-tree.png"
-                    alt="christmas-tree">
+                    alt="christmas-player1">
                 <img id="image-o-${i}" class="shapes x-o-shapes d-none" src="icons/icons8-christmas-preset.png" alt="">
             </div>
         </td>`;
@@ -117,9 +117,9 @@ Chosen image is pushed to array fields
 */
 function selectionToFields(i) {
     if (player1()) {
-        fields[i] = 'present';
+        fields[i] = 'player2';
     } else if (player2()) {
-        fields[i] = 'tree';
+        fields[i] = 'player1';
     }
 }
 
@@ -182,14 +182,14 @@ function celebrateWinner() {
 }
 
 function hideLoser() {
-    if (treeWins()) {
+    if (player1Wins()) {
         document.getElementById('player1').classList.add('victory');
         document.getElementById('player2').classList.add('d-none');
-        console.log('tree wins');
-    } else if (presentWins()) {
+        console.log('player1 wins');
+    } else if (player2Wins()) {
         document.getElementById('player1').classList.add('d-none');
         document.getElementById('player2').classList.add('victory');
-        console.log('present wins');
+        console.log('player2 wins');
     }
     console.log('macht was');
 }
@@ -222,22 +222,22 @@ function hideAllImages() {
 }
 
 function loserStartsGame() {
-    if (treeWins()) {
+    if (player1Wins()) {
         currentPlayer = 1;
         winner = "";
         showPlayers2Turn();
-    } else if (presentWins()) {
+    } else if (player2Wins()) {
         currentPlayer = 0;
         winner = "";
         showPlayers1Turn();
     }
 }
 
-function treeWins() {
-    return winner == "tree";
+function player1Wins() {
+    return winner == "player1";
 }
 
-function presentWins() {
-    return winner == "present";
+function player2Wins() {
+    return winner == "player2";
 }
 
